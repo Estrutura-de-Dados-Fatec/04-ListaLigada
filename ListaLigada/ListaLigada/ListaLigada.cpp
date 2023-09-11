@@ -144,28 +144,71 @@ void inserirElemento()
 }
 
 void excluirElemento()
-{
-	
+{ // ant--aux--prox
+	int excluir;
+	cout << "Digite o valor que deseja excluir: \n";
+	cin >> excluir;
+	NO* aux = primeiro;
+	NO* ant = NULL;
+
+	while (aux != NULL && aux->valor != excluir) {
+		aux = aux->prox;
+		ant = aux;
+	}
+
+		if (aux != NULL) {
+			if (ant != NULL) {
+				ant->prox = aux->prox;
+				free(aux);
+				cout << "Elemento excluido \n";
+			}
+		
+			else {
+			NO * primisPosicao = primeiro;
+			primeiro = primeiro->prox;
+			free(primisPosicao);
+			cout << "Elemento excluido \n";
+			
+			}	
+		}
+		else {
+			cout << "Elemento não encontrado \n";
+		}
 }
 
 void buscarElemento()
 {
+	int busca;
+	cout << "Digite o elemento que deseja buscar: \n";
+	cin >> busca;
+	NO* aux = primeiro;
+	while (aux != NULL) {
+		if (aux->valor == busca) {
+			cout << " O elemento foi encontrado na posição " << aux->valor;
+			break;
+		}
+		aux = aux->prox;
+	}
+		if(aux==NULL) {
+			cout << " Elemento não encontrado ";
+		}	
 	
 }
 
 
-
+//NomeDaVariável->nomeDoCampo
 // retorna um ponteiro para o elemento buscado
 // ou NULL se o elemento não estiver na lista
-NO* posicaoElemento(int numero)
-{
+
+NO* posicaoElemento (int numero)
+{	
 	NO* aux = primeiro;
 	while (aux != NULL) {
-		if (aux->valor == numero)
-		{
-			break;
-		}
-		aux = aux->prox;
+			if (aux->valor == numero)
+			{
+				break;
+			}
+			aux = aux->prox;
 	}
 	return aux;
 }
